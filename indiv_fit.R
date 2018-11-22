@@ -26,15 +26,20 @@ attach(indiv)
 
 mod_lat<-lmer(latence~genoR + (1|ID) + (1|date/rep))
 summary(mod_lat)
-stripchart(latence~genoR,vertical=TRUE,method="jitter",
-           pch=19,col=c("red","blue"))
-boxplot(latence~genoR)
+temp<-boxplot(latence~ID,plot=FALSE)
+tempmean<-aggregate(indiv$latence,list(as.character(indiv$ID)),mean)[,2]
+temp$stats[3,]<-tempmean
+bxp(temp)
+stripchart(latence~ID,vertical=TRUE,method="jitter",
+           pch=19,col=c("red","red","blue","blue"),add=TRUE)
+
 
 mod_spo<-lmer(spore~genoR + (1|ID) + (1|date/rep))
 summary(mod_spo)
 stripchart(spore~genoR,vertical=TRUE,method="jitter",
            pch=19,col=c("red","blue"))
 boxplot(spore~genoR)
+
 
 mod_inf<-lmer(infection~genoR + (1|ID) + (1|date/rep))
 summary(mod_inf)
