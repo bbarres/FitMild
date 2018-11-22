@@ -9,7 +9,7 @@ require(lme4)
 require(psych)
 
 #loading the dataset
-indiv<-read.table(file="FitMild.data",header=TRUE,sep="\t")
+indiv<-read.table(file="data/FitMild.data",header=TRUE,sep="\t")
 #see the structure of the file
 head(indiv)
 
